@@ -1,0 +1,68 @@
+<!doctype html><html lang='nl'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>WordPress onderhoud checklist</title><style>
+body{font:14px/1.45 system-ui,Arial,sans-serif;max-width:780px;margin:24px auto;padding:0 16px;color:#111;background:#fff}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:16px;border-bottom:2px solid #111;padding-bottom:3px;margin:22px 0 8px}h3{font-size:13px;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+ul{list-style:none;padding:0;margin:0}li{padding:3px 0 3px 24px;position:relative}li:before{content:'';position:absolute;left:0;top:5px;width:12px;height:12px;border:1.5px solid #111}
+.meta{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}.meta span{flex:1 1 200px;border-bottom:1px solid #111;padding-bottom:2px}
+@media print{body{margin:0;max-width:none}h2{break-after:avoid}li{break-inside:avoid}}</style></head><body>
+<h1>WordPress onderhoud checklist</h1><p>Bron: github.com/Joepify/wordpress-onderhoud-checklist (CC BY 4.0)</p>
+<div class='meta'><span>Site:</span><span>Datum:</span><span>Uitgevoerd door:</span></div>
+<h2>Wekelijks (10 minuten)</h2>
+<ul>
+<li><b>Uptime:</b> is de site bereikbaar? Zet een gratis monitor in (UptimeRobot of vergelijkbaar) met een melding per e-mail.</li>
+<li><b>Formulieren:</b> stuur een testbericht via je contactformulier en kijk of het aankomt.</li>
+<li><b>Spam en reacties:</b> haal spam weg en controleer onbekende nieuwe gebruikers.</li>
+<li><b>Beveiligingsmeldingen:</b> kijk of je beveiligingsplugin of host iets meldt.</li>
+</ul>
+<h2>Maandelijks (30 tot 60 minuten)</h2>
+<h3>Updates</h3>
+<ul>
+<li><b>Back-up eerst.</b> Controleer dat de laatste back-up er is, buiten de server staat en te openen is.</li>
+<li><b>WordPress-core:</b> werk bij naar de laatste (kleine) release.</li>
+<li><b>Plugins:</b> werk bij, één voor één bij belangrijke plugins (formulier, webshop, SEO), en kijk na elke update of de site werkt.</li>
+<li><b>Thema:</b> werk bij. Heb je een child theme, controleer dan of aanpassingen bewaard zijn.</li>
+<li><b>Ongebruikte plugins en thema's:</b> verwijderen, niet alleen uitschakelen.</li>
+<li><b>Plugins zonder updates:</b> is een plugin al meer dan een jaar niet bijgewerkt of uit de directory gehaald? Zoek een alternatief.</li>
+</ul>
+<h3>PHP en server</h3>
+<ul>
+<li><b>PHP-versie:</b> controleer welke versie draait (Hulpmiddelen, Site Health, Info, Server). Gebruik een versie die beveiligingsupdates krijgt. PHP 8.2 krijgt die tot en met 31 december 2026, PHP 8.3 tot en met 31 december 2027 en PHP 8.4 tot en met 31 december 2028 (bron: php.net). Met php-eol-check zie je het vanaf de command line.</li>
+<li><b>Site Health:</b> open Hulpmiddelen, Site Health en los de punten "Kritiek" en "Aanbevolen" op.</li>
+<li><b>Schijfruimte en geheugen:</b> ruim op als je host meldt dat het bijna vol is.</li>
+</ul>
+<h3>Beveiliging</h3>
+<ul>
+<li><b>Beheerders:</b> staan er alleen mensen die er horen? Verwijder oude accounts.</li>
+<li><b>Wachtwoorden en tweestapsverificatie</b> voor alle beheerders.</li>
+<li><b>Beveiligingsscan:</b> draai een scan, bijvoorbeeld met de gratis WordPress check van buitenaf, en kijk naar bekende lekken in plugins.</li>
+<li><b>Inlogpogingen:</b> zijn er veel mislukte pogingen? Beperk ze met een plugin of op serverniveau.</li>
+<li><b>Bestandswijzigingen:</b> <code>wp core verify-checksums</code> en <code>wp plugin verify-checksums --all</code> (WP-CLI) laten afwijkende bestanden zien.</li>
+</ul>
+<h3>Snelheid en vindbaarheid</h3>
+<ul>
+<li><b>Snelheid:</b> meet de belangrijkste pagina's op mobiel met PageSpeed Insights. Noteer de score in het log.</li>
+<li><b>Afbeeldingen:</b> zijn nieuwe afbeeldingen verkleind (breedte niet groter dan nodig, WebP waar mogelijk)?</li>
+<li><b>Search Console:</b> kijk bij Pagina's naar nieuwe fouten (404, serverfout, niet geïndexeerd).</li>
+<li><b>Kapotte links:</b> controleer interne links op 404's.</li>
+</ul>
+<h3>Back-ups</h3>
+<ul>
+<li><b>Terugzettest:</b> zet één keer per kwartaal een back-up terug op een testomgeving. Een back-up die je nooit hebt getest, is een hoop.</li>
+<li><b>Bewaartermijn:</b> bewaar minimaal 14 dagen aan dagelijkse back-ups en een maandelijkse kopie.</li>
+</ul>
+<h2>Per kwartaal</h2>
+<ul>
+<li>SSL-certificaat: wanneer verloopt het, en verlengt het automatisch?</li>
+<li>E-mail van je domein: controleer SPF, DKIM en DMARC met mail-auth-check.</li>
+<li>Security headers (HSTS en andere) en de cookiebanner.</li>
+<li>Toegang: wie heeft nog een login voor hosting, domein en WordPress?</li>
+<li>Formulieren en webshop: doe een volledige testbestelling of testaanvraag.</li>
+</ul>
+<h2>Per jaar</h2>
+<ul>
+<li>Domein en hosting: vervaldatum, wie is eigenaar, wie ontvangt de facturen?</li>
+<li>Zijn de teksten nog juist (prijzen, contactgegevens, openingstijden, KvK-nummer)?</li>
+<li>Past het huidige hostingpakket nog bij het bezoek? Meet laadtijd en serverrespons.</li>
+<li>Overweeg of het thema of een plugin vervangen moet worden door iets onderhoudbaars.</li>
+<li>Privacyverklaring, cookiebeleid en wettelijke pagina's nalopen.</li>
+</ul>
+</body></html>
